@@ -1,0 +1,42 @@
+
+   
+<h2> User List</h2>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> First Name</th>
+            <th> Last Name </th>
+            <th> Address</th>
+            <th> City </th>
+            <th> State </th>
+            <th> Zip  </th>
+            <th> Phone </th>
+            <th> email </th>
+            <th>Date</th>
+            <th> Comment </th>
+            <th>Likely</th>
+            <th>Interest</th>
+            <th>Recommend</th>
+        </tr>
+    </thead>
+    <tr *ngFor = "let user of users" >
+        <td> {{ user.firstName }} </td>
+        <td> {{ user.lastName }} </td>
+        <td> {{ user.address }} </td>
+        <td> {{ user.city }} </td>
+        <td> {{ user.state }} </td>
+        <td> {{ user.zip }} </td>
+        <td> {{ user.phone }} </td>
+        <td> {{ user.email }} </td>
+        <td> {{ user.date }} </td>
+        <td> {{ user.comment }} </td>
+        <td> {{ user.likely}} </td>
+        <td> {{ user.interest }} </td>
+        <td> {{ user.recommend }} </td>
+
+
+
+
+
+    </tr>
+
