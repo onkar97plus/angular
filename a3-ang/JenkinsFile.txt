@@ -1,0 +1,55 @@
+pipeline {
+	agent any
+	environment {
+		pass = credentials('PASSWORD')
+	}
+	stages {
+		stage("Building the Student Survey Image") {
+			steps {
+				script {
+					checkout scm
+// 					sh 'chmod 666 /var/run/docker.sock'
+					sh 'rm -rf *.war'
+					sh 'jar -cvf StudentSurvey.war -C 645_HW2/src/main/webapp/ .'
+					sh 'mv StudentSurvey.war 645_HW2/src/'
+					sh 'echo ${BUILD_TIMESTAMP}'
+					sh 'echo ${BUILD_ID}'
+					sh 'docker login -u onkar97 -p $pass'
+					sh 'ls -l'
+					sh 'cd 645_HW2/src'
+					sh 'ls -l'
+					sh 'pwd'
+					sh 'docker build -t onkar97/dockerhub:${BUILD_TIMESTAMP} 645_HW2/src/'
+					sh 'ls -l'
+// 					sh'docker build https://github.com/onkar97plus/SWE645/blob/571e0f47d0a634b3cc72c0f2596692005ed63249/645_HW2/src/Dockerfile'
+					
+				}
+			}
+		}
+		stage("Pushing Image to DockerHub") {
+			steps {
+				script {
+					sh'docker push onkar97/dockerhub:${BUILD_TIMESTAMP}'
+				}
+			}
+		}
+		stage("Deploying to Rancher as single pod") {
+			steps {
+// 				sh 'kubectl create deployment nginx --image=nginx'
+// 				sh 'sudo su jenkins'
+				
+				//sh 'kubectl auth can-i get deployment'
+				sh 'pwd'
+// 				sh 'kubectl set image pod/student-5556446d7b-47t8c container-0=onkar97/dockerhub:${BUILD_TIMESTAMP}  -n project'
+				sh 'kubectl set image deployment/student container-0=onkar97/dockerhub:${BUILD_TIMESTAMP} -n project'
+// 				sh 'sudo kubectl set image deployment/swe645 swe645=onkar97/dockerhub:${BUILD_TIMESTAMP} -n jenkins'
+			}
+		}
+		stage("Deploying to Rancher as with load balancer") {
+			steps {
+				sh 'kubectl set image deployment/student container-0=onkar97/dockerhub:${BUILD_TIMESTAMP} -n project'
+// 				sh 'kubectl set image deployment/student-loadbalancer student-loadbalancer=onkar97/dockerhub:1.6 -n project'
+			}
+		}
+	}
+}	
