@@ -41,7 +41,7 @@ pipeline {
 				//sh 'kubectl auth can-i get deployment'
 				sh 'pwd'
 // 				sh 'kubectl set image pod/student-5556446d7b-47t8c container-0=onkar97/dockerhub:${BUILD_TIMESTAMP}  -n project'
-				sh 'kubectl set image deployment/student container-0=onkar97/dockerhub:${BUILD_TIMESTAMP} -n project'
+				sh 'kubectl set image deployment/frontend container-0=onkar97/dockerhub:${BUILD_TIMESTAMP} -n a3'
 // 				sh 'sudo kubectl set image deployment/swe645 swe645=onkar97/dockerhub:${BUILD_TIMESTAMP} -n jenkins'
 			}
 		}
