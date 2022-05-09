@@ -48,7 +48,7 @@ pipeline {
 		}
 		stage("Deploying to Rancher as with load balancer") {
 			steps {
-				sh 'kubectl set image deployment/student container-0=onkar97/dockerhub:${BUILD_TIMESTAMP} -n project'
+				sh 'kubectl set image deployment/frontend container-0=onkar97/dockerhub:${BUILD_TIMESTAMP} -n a3'
 // 				sh 'kubectl set image deployment/student-loadbalancer student-loadbalancer=onkar97/dockerhub:1.6 -n project'
 			}
 		}
