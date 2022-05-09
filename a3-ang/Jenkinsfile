@@ -16,7 +16,7 @@ pipeline {
 					sh 'echo ${BUILD_ID}'
 					sh 'docker login -u onkar97 -p $pass'
 					sh 'ls -l'
-					sh 'cd a3-ang/src/'
+					sh 'cd a3-ang/'
 					sh 'ls -l'
 					sh 'pwd'
 					sh 'docker build -t onkar97/dockerhub:${BUILD_TIMESTAMP} a3-ang/src/'
