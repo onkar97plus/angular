@@ -1,11 +1,10 @@
-FROM node:latest as node
-WORKDIR /app
-COPY . .
 RUN npm install
 RUN npm run build --prod
+WORKDIR /app
+COPY . .
 
 FROM nginx:alpine
-COPY --from=node /app/dist/a3-ang /usr/share/nginx/html
+COPY  /app/dist/a3-ang /usr/share/nginx/html
 
 # FROM nginx:alpine
 # RUN ls
