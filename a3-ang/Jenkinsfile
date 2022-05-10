@@ -21,7 +21,7 @@ pipeline {
 					sh 'cd a3-ang/'
           sh 'ls'
           sh 'npm install'
-          sh 'RUN npm run build --prod'
+          sh 'npm run build --prod '
 					sh 'ls -l'
 					sh 'pwd'
 					sh 'docker build -t onkar97/dockerhub:${BUILD_TIMESTAMP} a3-ang/'
