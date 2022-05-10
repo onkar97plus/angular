@@ -9,6 +9,7 @@ pipeline {
 				script {
 					checkout scm
 // 					sh 'chmod 666 /var/run/docker.sock'
+          sh 'sudo apt-get install npm'
           sh 'npm install'
           sh 'ng build --prod'
 					sh 'rm -rf *.war'
