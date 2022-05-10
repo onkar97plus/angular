@@ -19,6 +19,7 @@ pipeline {
 					sh 'ls -l'
           sh 'npm install'
 					sh 'cd a3-ang/'
+          sh 'ls'
           sh 'npm install'
           sh 'RUN npm run build --prod'
 					sh 'ls -l'
