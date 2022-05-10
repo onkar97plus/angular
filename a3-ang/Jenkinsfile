@@ -9,7 +9,8 @@ pipeline {
 				script {
 					checkout scm
 // 					sh 'chmod 666 /var/run/docker.sock'
-          
+          sh 'npm install'
+          sh 'ng build --prod'
 					sh 'rm -rf *.war'
 					sh 'jar -cvf StudentSurvey.war -C a3-ang/src/ .'
 					sh 'mv StudentSurvey.war a3-ang/'
