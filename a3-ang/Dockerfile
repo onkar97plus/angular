@@ -1,9 +1,12 @@
+FROM nginx:alpine
+
+WORKDIR /app
 RUN npm install
 RUN npm run build --prod
-WORKDIR /app
+
 COPY . .
 
-FROM nginx:alpine
+
 COPY  /app/dist/a3-ang /usr/share/nginx/html
 
 # FROM nginx:alpine
